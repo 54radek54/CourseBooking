@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>$Title$</title>
+</head>
+<body>
+<header th:fragment="navbar" id="nav">
+    <div class="inner">
+        <div class="logo">Courses</div>
+        <nav role='navigation'>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/profile}">Profile</a></li>
+                <li><a th:href="@{/courses}">Courses</a></li>
+                <div sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/users_bookings}">My Bookings</a></div>
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')"><li><a th:href="@{/bookings}">Bookings</a></li></div>
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')"><li><a th:href="@{/users}">Users</a></li></div>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

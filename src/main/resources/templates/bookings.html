@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/listStyles.css}">
+    <meta charset="UTF-8">
+    <title>Bookings</title>
+</head>
+<body>
+<nav th:replace="navbar::header"></nav>
+<div class="container">
+    <table>
+        <caption>Bookings List</caption>
+        <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Course name</th>
+            <th>User email</th>
+            <th>Tutor</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.id}">Booking ID</td>
+            <td th:text="${booking.course.name}">Course name</td>
+            <td th:text="${booking.appUser.email}">User email</td>
+            <td th:text="${booking.course.tutor}">Tutor</td>
+            <td th:text="${booking.course.description}">Description</td>
+            <td th:text="${booking.course.cost}">Cost</td>
+            <td><a th:href="@{/deleteBooking/{id}(id=${booking.id})}" class="delete btn" >Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

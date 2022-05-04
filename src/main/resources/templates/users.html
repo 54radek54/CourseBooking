@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/listStyles.css}">
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<nav th:replace="navbar::header"></nav>
+<div class="container">
+    <h2 th:align="center">Search in User List</h2>
+    <form th:align="center" th:action="@{/searchUser}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Name & Role & Email" size="50" >
+        <button type="submit" class="btn btn-info" >Search</button>
+    </form>
+<table>
+    <thead>
+    <tr>
+        <th>User ID</th>
+        <th>E-mail</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Change Role User/Employee</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appUser : ${appUsers}">
+        <td th:text="${appUser.id}">User ID</td>
+        <td th:text="${appUser.email}">E-mail</td>
+        <td th:text="${appUser.firstName}">First Name</td>
+        <td th:text="${appUser.lastName}">Last Name</td>
+        <td th:text="${appUser.role}">Role</td>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <td><a th:href="@{/makeEmployee/{id}(id=${appUser.id})}" class="change btn">Change</a></td>
+        <td><a th:href="@{/deleteUser/{id}(id=${appUser.id})}" class="delete btn" >Delete</a></td>
+        </div>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

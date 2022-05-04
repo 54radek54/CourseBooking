@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration Success</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/registrationSuccessStyles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="alert-message alert-message-success">
+                <h4>You have signed up successfully!</h4>
+                <p>Now You can use your account.
+                    <a th:href="@{/login}">Click here to Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

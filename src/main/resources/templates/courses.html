@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/listStyles.css}">
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<nav th:replace="navbar::header"></nav>
+
+<div class="container">
+    <h2 th:align="center">Search in Course List</h2>
+    <form th:align="center" th:action="@{/search}" method="get">
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Course By Name & Tutor" size="50" >
+        <button type="submit" class="btn btn-info" >Search</button>
+        <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')"><a class="button change" th:href="@{/course}">ADD</a></div>
+    </form>
+    <div>
+        <ul>
+            <li th:each="i : ${#numbers.sequence(0,courses.totalPages-1)}">
+                <a th:href="@{/courses(page=${i})}" th:text="${i}" th:classappend="${currentPage}==${i}?'active':''"></a>
+            </li>
+        </ul>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Course ID</th>
+            <th>Name</th>
+            <th>Tutor</th>
+            <th>Cost</th>
+            <th>Description</th>
+            <div sec:authorize="isAuthenticated()"><th>Course booking</th></div>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')"><th>Delete</th></div>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course, iteration : ${courses.content}">
+            <td th:text="${course.id}">Course ID</td>
+            <td th:text="${course.name}">Name</td>
+            <td th:text="${course.tutor}">Tutor</td>
+            <td th:text="${course.cost}">Tutor</td>
+            <td th:text="${course.description}">Description</td>
+            <div sec:authorize="isAuthenticated()">
+            <td><a th:href="@{/book/{id}(id=${course.id})}" class="change btn" >Book</a></td>
+            </div>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')">
+            <td><a th:href="@{/deleteCourse/{id}(id=${course.id})}" class="delete btn" >Delete</a></td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

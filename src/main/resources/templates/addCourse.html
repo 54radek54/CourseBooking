@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/updateFormStyles.css}">
+    <meta charset="UTF-8">
+    <title>Add course</title>
+</head>
+<body>
+<nav th:replace="navbar::header"></nav>
+<div class="container">
+    <h2>Add new course</h2>
+    <form th:action="@{/add_course}" th:object="${course}" method="post">
+        <div class="group">
+            <input th:field="*{name}" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Course name</label>
+        </div>
+        <div class="group">
+            <input th:field="*{tutor}" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Tutor name</label>
+        </div>
+        <div class="group">
+            <input th:field="*{description}" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Course description</label>
+        </div>
+        <div class="group">
+            <input th:field="*{cost}" type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Cost</label>
+        </div>
+        <div class="group">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

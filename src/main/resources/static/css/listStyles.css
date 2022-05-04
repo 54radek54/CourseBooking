@@ -1,0 +1,58 @@
+body {
+    height: 2000px;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
+}
+table {
+    position: relative;
+    top:50px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+table tr {
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+table th,
+table td {
+    padding: .625em;
+    text-align: left;
+}
+table th {
+    background: #999;
+    color: #fff;
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.btn {
+    border-radius: 3px;
+    border: none;
+    margin: 0 0.25em;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    box-shadow: 0 0 4px rgba(3,3,3,0.8);
+    opacity: 0.9;
+}
+.btn.delete { background: #F69; }
+.btn.change { background: cornflowerblue; }
+.button{
+    position: relative;
+
+}
